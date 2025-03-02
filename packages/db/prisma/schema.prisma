@@ -1,0 +1,51 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User{
+  id          String  @default(uuid()) @id
+  name        String  @unique
+  email       String  @unique
+  password    String?
+  avatarUrl   String?
+  education   Education[]   
+  jobs        Job[]
+  role        Role  @default(USER)
+}
+
+model Education{
+  id          Int @default(autoincrement()) @id
+  userId      String
+  institute   String?
+  year        Int?
+  degree      String?
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Job{
+  id          Int @default(autoincrement()) @id
+  userId      String
+  company     String?
+  workMode    Int?
+  startDate   DateTime?
+  endDate     DateTime?
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+
+enum Role{
+  USER
+  ADMIN
+  HR
+}
+
+enum WorkMode{
+  remote
+  hybrid
+  office
+}
