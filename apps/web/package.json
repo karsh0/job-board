@@ -12,9 +12,15 @@
   },
   "dependencies": {
     "@repo/ui": "*",
+    "@repo/db":"*",
+    "@types/axios": "^0.9.36",
+    "@types/cors": "^2.8.17",
+    "axios": "^1.8.1",
+    "cors": "^2.8.5",
     "next": "^15.1.6",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "zod": "^3.24.2"
   },
   "devDependencies": {
     "@repo/eslint-config": "*",
