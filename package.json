@@ -23,6 +23,10 @@
   ],
   "dependencies": {
     "@prisma/client": "^6.4.1",
-    "prisma": "^6.4.1"
+    "@types/bcrypt": "^5.0.2",
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^3.0.2",
+    "prisma": "^6.4.1",
+    "react-hook-form": "^7.55.0"
   }
 }

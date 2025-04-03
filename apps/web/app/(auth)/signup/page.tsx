@@ -1,8 +1,8 @@
-import Signup from "../../components/signup";
+import { SignUp } from "../../../components/auth/signup";
 
-export default function SignupPage(){
+export default function RegisterPage(){
     return <div>
         signup page
-        <Signup/>
+        <SignUp/>
     </div>
 }
