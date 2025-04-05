@@ -6,4 +6,5 @@ export const MESSAGES = {
         EXISTS: "user already exists"
     },
     SUCCESS : "success",
+    VALIDATION_FAILED : "validation failed"
 }
