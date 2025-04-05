@@ -2,6 +2,8 @@
 import { useForm } from "react-hook-form";
 import { signupType } from "../../types/auth.types";
 import { signUp } from "../../actions/auth.action";
+import { redirect } from "next/navigation";
+
 
 export function SignUp() {
   const {
@@ -18,7 +20,7 @@ export function SignUp() {
 
   async function signUpHandler(data: signupType) {
     const user  = await signUp(data)
-    console.log(user)
+    redirect('/signin')
   }
 
   return (

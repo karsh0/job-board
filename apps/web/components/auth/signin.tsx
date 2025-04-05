@@ -2,6 +2,7 @@
 import { useForm } from "react-hook-form";
 import { signinType } from "../../types/auth.types";
 import { signIn } from "../../actions/auth.action";
+import { redirect } from "next/navigation";
 
 export function SignIn() {
   const {
@@ -14,10 +15,11 @@ export function SignIn() {
       password: "",
     },
   });
+  
 
   async function SignInHandler(data: signinType) {
     const user  = await signIn(data)
-    console.log(user)
+    redirect('/dashboard')
   }
 
   return (
