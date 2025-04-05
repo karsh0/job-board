@@ -1,36 +1,34 @@
 
 import { useForm } from "react-hook-form";
-import { signupType } from "../../types/auth.types";
-import { signUp } from "../../actions/auth.action";
+import { signinType } from "../../types/auth.types";
+import { signIn } from "../../actions/auth.action";
 
-export function SignUp() {
+export function SignIn() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<signupType>({
+  } = useForm<signinType>({
     defaultValues: {
-      name: "",
       email: "",
       password: "",
     },
   });
 
-  async function signUpHandler(data: signupType) {
-    const user  = await signUp(data)
+  async function SignInHandler(data: signinType) {
+    const user  = await signIn(data)
     console.log(user)
   }
 
   return (
     <div>
-      <form onSubmit={handleSubmit(signUpHandler)}>
-        <input type="text" placeholder="Enter your name" {...register("name", { required: "Name is required" })} />
+      <form onSubmit={handleSubmit(SignInHandler)}>
 
         <input type="email" placeholder="Enter your email" {...register("email", { required: "Email is required" })} />
 
         <input type="password" placeholder="Enter your password" {...register("password", { required: "Password is required" })} />
 
-        <button type="submit">Register</button>
+        <button type="submit">Signin</button>
       </form>
     </div>
   );
