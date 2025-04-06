@@ -1,6 +1,6 @@
 
 export type signupType = {
-    name: string
+    name?: string
     email: string
     password: string
 }
