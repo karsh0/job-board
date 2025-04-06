@@ -33,19 +33,30 @@ export async function updateUser(data: UserProfileType){
             error
         }
     }
-
 }
 
-export async function InitUserId(){
+async function InitUserId(){
+    console.log("init")
     const token = (await cookies()).get('token') 
     const user = jwt.verify(token?.value!, JWT_SECRET)
     // @ts-ignore
     return user.userId
 }
 
-const userId = await InitUserId()
+export async function updateAvatar(avatarFile: string){
+    const userId = await InitUserId()
+    await prismaClient.user.update({
+        where:{
+            id: userId
+        },
+        data:{
+            avatar: avatarFile
+        }
+    })
+}
 
 export async function addSkills(data: AddSkillsType){
+    const userId = await InitUserId()
     await prismaClient.user.update({
         where:{
             id: userId
@@ -57,7 +68,7 @@ export async function addSkills(data: AddSkillsType){
 }
 
 export async function addEducation(data: AddEducationType){
-    
+    const userId = await InitUserId()
     await prismaClient.education.create({
         data:{
             instituteName: data.institue,
@@ -69,13 +80,14 @@ export async function addEducation(data: AddEducationType){
 }
 
 export async function addResume(resume: string){
+    const userId = await InitUserId()
     await prismaClient.user.update({
         where:{
             id: userId
         },
         data:{
             resume,
-            resumeUpdateDate: Date.now().toString()
+            resumeUpdateDate: new Date()
         }
     })
 }

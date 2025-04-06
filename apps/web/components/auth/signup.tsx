@@ -1,4 +1,5 @@
-// app/(auth)/signup.tsx
+"use client";
+
 import { useForm } from "react-hook-form";
 import { signupType } from "../../types/auth.types";
 import { signUp } from "../../actions/auth.action";
@@ -18,44 +19,53 @@ export function SignUp() {
     },
   });
 
-  async function signUpHandler(data: signupType) {
+  const handleSignUp = async (data: signupType) => {
     const user = await signUp(data);
-    redirect('/signin');
-  }
+    redirect("/signin");
+  };
 
   return (
     <div className="w-full h-full flex justify-center items-center">
-      <div className="w-96 border rounded-xl border-gray-300 p-5">
-        <form
-          className="flex flex-col gap-2"
-          onSubmit={handleSubmit(signUpHandler)}
-        >
-          <span className="text-2xl font-semibold text-center">Welcome</span>
+      <div className="w-full max-w-md border rounded-2xl border-gray-300 p-6 shadow-md">
+        <form className="flex flex-col gap-4" onSubmit={handleSubmit(handleSignUp)}>
+          <h2 className="text-3xl font-bold text-center mb-2">Create Account</h2>
+
           <Input
             type="text"
             name="name"
-            label="Enter your name"
+            label="Name"
             placeholder="John Doe"
             register={register}
           />
+          {errors.name && (
+            <span className="text-red-500 text-sm">{errors.name.message}</span>
+          )}
+
           <Input
             type="email"
             name="email"
-            label="Enter your email"
+            label="Email"
             placeholder="email@example.com"
             register={register}
           />
+          {errors.email && (
+            <span className="text-red-500 text-sm">{errors.email.message}</span>
+          )}
+
           <Input
             type="password"
             name="password"
-            label="Enter your password"
+            label="Password"
             placeholder="********"
             register={register}
           />
+          {errors.password && (
+            <span className="text-red-500 text-sm">{errors.password.message}</span>
+          )}
 
           <button
             type="submit"
-            className="bg-blue-300 rounded-xl px-5 py-2 font-semibold cursor-pointer"
+            className="bg-blue-500 hover:bg-blue-600 text-white rounded-xl px-5 py-2 font-semibold transition duration-200"
           >
             Register
           </button>

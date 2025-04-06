@@ -2,11 +2,11 @@ import { UseFormRegister } from "react-hook-form";
 import { signupType } from "../../types/auth.types";
 
 type InputProps = {
-  name: keyof signupType;
+  name: string;
   type: string;
   label: string;
   placeholder?: string;
-  register: UseFormRegister<signupType>;
+  register: UseFormRegister<any>;
 };
 
 export default function Input({
