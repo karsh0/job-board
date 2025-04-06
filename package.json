@@ -30,7 +30,6 @@
     "bcryptjs": "^3.0.2",
     "cookie-parser": "^1.4.7",
     "dotenv": "^16.4.7",
-    "jose": "^6.0.10",
     "jsonwebtoken": "^9.0.2",
     "prisma": "^6.4.1",
     "react-hook-form": "^7.55.0"

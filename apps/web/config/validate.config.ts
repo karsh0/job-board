@@ -1,13 +1,14 @@
-import { jwtVerify } from 'jose';
+import jwt from 'jsonwebtoken'
+import { MESSAGES } from '../utils/messages';
 
-export async function checkToken(token: string) {
-  const secret = new TextEncoder().encode("supersecretstring123");
+export const JWT_SECRET= "supersecretstring123"
 
-  try {
-    const { payload } = await jwtVerify(token, secret);
-    return payload;
-  } catch (err) {
-    console.error("Token verification failed:", err);
-    return null;
-  }
+export function checkToken(token: string){
+
+    const verifiedUser = jwt.verify(token, JWT_SECRET ?? "");
+    console.log('jwt secret:' , process.env.JWT_SECRET)
+    if(!verifiedUser){
+        return MESSAGES.USER.NOT_FOUND
+    }
+    return verifiedUser
 }

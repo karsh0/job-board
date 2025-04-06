@@ -6,6 +6,7 @@ import bcrypt from "bcryptjs";
 import { MESSAGES } from "../utils/messages";
 import jwt from "jsonwebtoken"
 import { cookies } from "next/headers";
+import { JWT_SECRET } from "../config/validate.config";
 export async function signUp({name, email, password}: signupType){
     const existingUser = await prismaClient.user.findFirst({
         where:{
@@ -43,7 +44,6 @@ export async function signIn({email, password}: signinType){
     if(!passwordMatch){
         return MESSAGES.USER.INVALID_PASSWORD
     }
-    const JWT_SECRET= "supersecretstring123"
     const token = jwt.sign({userId : user.id},JWT_SECRET ?? "")
     
     const cookieStore = await cookies(); 
